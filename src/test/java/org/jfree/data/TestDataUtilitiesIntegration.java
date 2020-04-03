@@ -299,16 +299,12 @@ public class TestDataUtilitiesIntegration {
 	
 	@Test
 	public void TestOneValuegetCumulativePercentages() {
-		KeyedValues keyedValues = Mockito.mock(KeyedValues.class);
-		when(keyedValues.getItemCount()).thenReturn(4);
-		when(keyedValues.getValue(0)).thenReturn(2);
-		when(keyedValues.getValue(1)).thenReturn(2);
-		when(keyedValues.getValue(2)).thenReturn(2);
-		when(keyedValues.getValue(3)).thenReturn(2);
-		when(keyedValues.getKey(0)).thenReturn(2);
-		when(keyedValues.getKey(1)).thenReturn(3);
-		when(keyedValues.getKey(2)).thenReturn(4);
-		when(keyedValues.getKey(3)).thenReturn(5);
+		DefaultKeyedValues keyedValues = new DefaultKeyedValues();
+		keyedValues.addValue((Comparable)2, 2);
+		keyedValues.addValue((Comparable)3, 2);
+		keyedValues.addValue((Comparable)4, 2);
+		keyedValues.addValue((Comparable)5, 2);
+		
 		
 		KeyedValues keyedValues2 = DataUtilities.getCumulativePercentages(keyedValues);
 		assertEquals(0.25, keyedValues2.getValue((Comparable)2));
@@ -316,16 +312,11 @@ public class TestDataUtilitiesIntegration {
 	
 	@Test
 	public void TestAllgetCumulativePercentages() {
-		KeyedValues keyedValues = Mockito.mock(KeyedValues.class);
-		when(keyedValues.getItemCount()).thenReturn(4);
-		when(keyedValues.getValue(0)).thenReturn(2);
-		when(keyedValues.getValue(1)).thenReturn(2);
-		when(keyedValues.getValue(2)).thenReturn(2);
-		when(keyedValues.getValue(3)).thenReturn(2);
-		when(keyedValues.getKey(0)).thenReturn(2);
-		when(keyedValues.getKey(1)).thenReturn(3);
-		when(keyedValues.getKey(2)).thenReturn(4);
-		when(keyedValues.getKey(3)).thenReturn(5);
+		DefaultKeyedValues keyedValues = new DefaultKeyedValues();
+		keyedValues.addValue((Comparable)2, 2);
+		keyedValues.addValue((Comparable)3, 2);
+		keyedValues.addValue((Comparable)4, 2);
+		keyedValues.addValue((Comparable)5, 2);
 		
 		KeyedValues keyedValues2 = DataUtilities.getCumulativePercentages(keyedValues);
 		assertEquals(1.00, keyedValues2.getValue((Comparable)5));
@@ -333,16 +324,11 @@ public class TestDataUtilitiesIntegration {
 	
 	@Test
 	public void TestNegativegetCumulativePercentages() {
-		KeyedValues keyedValues = Mockito.mock(KeyedValues.class);
-		when(keyedValues.getItemCount()).thenReturn(4);
-		when(keyedValues.getValue(0)).thenReturn(-2);
-		when(keyedValues.getValue(1)).thenReturn(-2);
-		when(keyedValues.getValue(2)).thenReturn(-2);
-		when(keyedValues.getValue(3)).thenReturn(-2);
-		when(keyedValues.getKey(0)).thenReturn(2);
-		when(keyedValues.getKey(1)).thenReturn(3);
-		when(keyedValues.getKey(2)).thenReturn(4);
-		when(keyedValues.getKey(3)).thenReturn(5);
+		DefaultKeyedValues keyedValues = new DefaultKeyedValues();
+		keyedValues.addValue((Comparable)2, -2);
+		keyedValues.addValue((Comparable)3, -2);
+		keyedValues.addValue((Comparable)4, -2);
+		keyedValues.addValue((Comparable)5, -2);
 		
 		KeyedValues keyedValues2 = DataUtilities.getCumulativePercentages(keyedValues);
 		assertEquals(0.25, keyedValues2.getValue((Comparable)2));

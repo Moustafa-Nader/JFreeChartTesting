@@ -84,11 +84,6 @@ public class TestDataUtilities {
 		assertTrue(Arrays.deepEquals(null, arr2));
 	}
 	
-	
-	
-	
-	
-	
 
 	@Test
 	public void TestLowercalculateColumnTotal() {
@@ -138,15 +133,7 @@ public class TestDataUtilities {
 	public void TestNullcalculateColumnTotal() {
 		assertNotEquals(3.0, DataUtilities.calculateColumnTotal(null, 0),0.00001);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void TestNullDatacalculateColumnTotal() {
 		int[] rows = {1,2,3};
@@ -251,8 +238,6 @@ public class TestDataUtilities {
 	}
 	
 
-
-
 	
 	
 	
@@ -304,13 +289,7 @@ public class TestDataUtilities {
 	public void TestNullcalculateRowTotal() {
 		assertNotEquals(3.0, DataUtilities.calculateRowTotal(null, 0),0.00001);
 	}
-	
-	
-	
-	
-	
-	
-	
+		
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void TestNullDatacalculateRowTotal() {
@@ -417,11 +396,6 @@ public class TestDataUtilities {
 	
 	
 	
-	
-	
-	
-	
-	
 	@Test(expected = IllegalArgumentException.class)
 	public void TestNullcreateNumberArray() {
 		Number[] arr = DataUtilities.createNumberArray(null);
@@ -437,12 +411,6 @@ public class TestDataUtilities {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
 	@Test(expected = IllegalArgumentException.class)
 	public void TestNullcreateNumberArray2D() {
 		Number[][] arr = DataUtilities.createNumberArray2D(null);
@@ -456,17 +424,6 @@ public class TestDataUtilities {
 		Number[][] ans = {{1.0,2.0},{3.0}};
 		assertTrue(Arrays.deepEquals(arr, ans));
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

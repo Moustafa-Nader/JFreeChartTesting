@@ -147,7 +147,7 @@ public class TestComparableObjectSeries {
 	public void Testadd2paramCall() {
 		ComparableObjectSeries mockedSeries = Mockito.spy(TestSeries);
 		mockedSeries.add(5,8);
-		Mockito.verify(mockedSeries, Mockito.times(1)).add(Mockito.isA(Integer.class),Mockito.isA(Integer.class));
+		Mockito.verify(mockedSeries, Mockito.times(1)).add(5,8,true);
 	}
 	@Test
 	public void Testadd2param() {
@@ -268,12 +268,7 @@ public class TestComparableObjectSeries {
 		Series1.add(mockedItem1, true);
 		Series1.add(mockedItem2, true);
 		}
-	@Test(expected = IllegalArgumentException.class)
-	
-	public void TestaddItemNullItem(){
-		ComparableObjectItem item = null;
-		Series.add(item, 1);
-	}
+
 	@Test
 	public void TestaddItem() {
 		ComparableObjectSeries Series1 = new ComparableObjectSeries("Series",false,false);
@@ -300,6 +295,7 @@ public class TestComparableObjectSeries {
 		Series.add(2, 3);
 		Series.add(5, 6);
 		assertTrue(Series.indexOf(3)<0);
+	
 	}
 	@Test
 	public void TestindexOfExist() {
@@ -346,7 +342,27 @@ public class TestComparableObjectSeries {
 		
 	}
 	
+	@Test
+	public void TestupdateByIndexBegin() {
+		TestSeries.updateByIndex(0, 3);
+		assertEquals(new ComparableObjectItem(0,3), TestSeries.data.get(0));
+		
+	}
+	@Test
+	public void TestupdateByIndexEnd() {
+		TestSeries.updateByIndex(2, 7);
+		assertEquals(new ComparableObjectItem(2,7), TestSeries.data.get(2));
+		
 	
+	}
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void TestupdateByIndexoutNegative() {
+		TestSeries.updateByIndex(-1, 7);
+	}
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void TestupdateByIndexoutPositive() {
+		TestSeries.updateByIndex(4, 7);
+	}
 	@Test
 	public void TestupdateByIndexExist() {
 		ComparableObjectSeries mockedSeries = Mockito.spy(TestSeries);

@@ -1,13 +1,15 @@
-package myGroup.JFreeChartTesting;
+package org.jfree.data;
 
 import static org.junit.Assert.*;
 
+import org.jfree.data.ComparableObjectItem;
 import org.junit.Test;
 
-public class TestMatrixSeries {
+public class TestDataUtilities {
 
 	@Test
 	public void test() {
+		
 		fail("Not yet implemented");
 	}
 

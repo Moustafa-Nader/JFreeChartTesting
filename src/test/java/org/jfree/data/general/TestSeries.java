@@ -88,7 +88,7 @@ public class TestSeries {
 		verify(mockedListener,times(1)).seriesChanged((SeriesChangeEvent)any());
 	}
 	
-	//
+	//isEmpty function test
 	@Test
 	public void TestisEmpty() {
 		assertFalse(series.isEmpty());

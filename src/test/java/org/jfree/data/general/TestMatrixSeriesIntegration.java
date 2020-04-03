@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.internal.verification.Times;
+import org.objenesis.instantiator.basic.NewInstanceInstantiator;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -38,7 +39,40 @@ public class TestMatrixSeriesIntegration {
 			testMatrixSeries.addChangeListener(listener2);
 			testMatrixSeries.addChangeListener(listener3);
 			testMatrixSeries.fireSeriesChanged();
+			
 			verify(listener1,times(1)).seriesChanged((SeriesChangeEvent)any());
+			verify(listener2,times(1)).seriesChanged((SeriesChangeEvent)any());
+			verify(listener3,times(1)).seriesChanged((SeriesChangeEvent)any());	
+		}
+		
+		@Test
+		public void TestAddingAndFiringSeriesChangeFalse() {
+			SeriesChangeListener listener1 = spy(new MatrixSeriesCollection());
+			SeriesChangeListener listener2 = spy(new MatrixSeriesCollection());
+			SeriesChangeListener listener3 = spy(new MatrixSeriesCollection());
+			testMatrixSeries.addChangeListener(listener1);
+			testMatrixSeries.addChangeListener(listener2);
+			testMatrixSeries.addChangeListener(listener3);
+			testMatrixSeries.setNotify(false);
+			testMatrixSeries.fireSeriesChanged();
+			
+			verify(listener1,times(0)).seriesChanged((SeriesChangeEvent)any());
+			verify(listener2,times(0)).seriesChanged((SeriesChangeEvent)any());
+			verify(listener3,times(0)).seriesChanged((SeriesChangeEvent)any());	
+		}
+		
+		@Test
+		public void TestAddingAndNotifyingListeners() {
+			SeriesChangeListener listener1 = spy(new MatrixSeriesCollection());
+			SeriesChangeListener listener2 = spy(new MatrixSeriesCollection());
+			SeriesChangeListener listener3 = spy(new MatrixSeriesCollection());
+			testMatrixSeries.addChangeListener(listener1);
+			testMatrixSeries.addChangeListener(listener2);
+			testMatrixSeries.addChangeListener(listener3);
+			testMatrixSeries.setNotify(false);
+			testMatrixSeries.notifyListeners(new SeriesChangeEvent(3));
+			
+			verify(listener1,times(1)).seriesChanged(new SeriesChangeEvent(15));
 			verify(listener2,times(1)).seriesChanged((SeriesChangeEvent)any());
 			verify(listener3,times(1)).seriesChanged((SeriesChangeEvent)any());	
 		}
@@ -52,6 +86,7 @@ public class TestMatrixSeriesIntegration {
 			testMatrixSeries.addPropertyChangeListener(listener2);
 			testMatrixSeries.addPropertyChangeListener(listener3);
 			testMatrixSeries.firePropertyChange("property",1,10);
+			
 			verify(listener1,times(1)).propertyChange((PropertyChangeEvent)any());
 			verify(listener2,times(1)).propertyChange((PropertyChangeEvent)any());
 			verify(listener3,times(1)).propertyChange((PropertyChangeEvent)any());
@@ -66,9 +101,27 @@ public class TestMatrixSeriesIntegration {
 			testMatrixSeries.addVetoableChangeListener(listener2);
 			testMatrixSeries.addVetoableChangeListener(listener3);
 			testMatrixSeries.fireVetoableChange("property",1,10);
+			
 			verify(listener1,times(1)).vetoableChange((PropertyChangeEvent)any());
 			verify(listener2,times(1)).vetoableChange((PropertyChangeEvent)any());
 			verify(listener3,times(1)).vetoableChange((PropertyChangeEvent)any());
+		}
+		
+		@Test
+		public void TestsetDescriptionIntegeration() {
+			PropertyChangeListener listener = spy(new MetalLabelUI());
+			testMatrixSeries.addPropertyChangeListener(listener);
+			testMatrixSeries.setDescription("MyDescription");
+			
+			verify(listener,times(1)).propertyChange((PropertyChangeEvent)any());
+		}
+		
+		@Test
+		public void TestsetKey() throws PropertyVetoException {
+			VetoableChangeListener listener = spy(new BeanContextSupport());
+			testMatrixSeries.addVetoableChangeListener(listener);
+			testMatrixSeries.setKey(1337);
+			verify(listener,times(1)).vetoableChange((PropertyChangeEvent) any());
 		}
 		
 }

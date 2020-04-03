@@ -1,4 +1,4 @@
-package myGroup.JFreeChartTesting;
+package org.jfree.data;
 
 import static org.junit.Assert.assertTrue;
 

@@ -1,10 +1,10 @@
-package myGroup.JFreeChartTesting;
+package org.jfree.data;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestMatrixSeries {
+public class TestComparableObjectSeries {
 
 	@Test
 	public void test() {

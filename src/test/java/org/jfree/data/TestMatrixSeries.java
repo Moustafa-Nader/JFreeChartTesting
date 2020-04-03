@@ -58,7 +58,7 @@ public class TestMatrixSeries {
 	}
 	
 	@Test
-	public void TestgetValidnonDefault00() {
+	public void TestgetValidnonDefaultCornerCase00() {
 		MatrixSeries testMat = new MatrixSeries("testMat", 2, 2);
 		testMat.update(0, 0, 1.1111);
 		testMat.update(0, 1, 1.2222);
@@ -68,7 +68,7 @@ public class TestMatrixSeries {
 	}
 	
 	@Test
-	public void TestgetValidnonDefault01() {
+	public void TestgetValidnonDefaultCornerCase01() {
 		MatrixSeries testMat = new MatrixSeries("testMat", 2, 2);
 		testMat.update(0, 0, 1.1111);
 		testMat.update(0, 1, 1.2222);
@@ -78,7 +78,7 @@ public class TestMatrixSeries {
 	}
 	
 	@Test
-	public void TestgetValidnonDefault10() {
+	public void TestgetValidnonDefaultCornerCase10() {
 		MatrixSeries testMat = new MatrixSeries("testMat", 2, 2);
 		testMat.update(0, 0, 1.1111);
 		testMat.update(0, 1, 1.2222);
@@ -88,7 +88,7 @@ public class TestMatrixSeries {
 	}
 	
 	@Test
-	public void TestgetValidnonDefault11() {
+	public void TestgetValidnonDefaultCornerCase11() {
 		MatrixSeries testMat = new MatrixSeries("testMat", 2, 2);
 		testMat.update(0, 0, 1.1111);
 		testMat.update(0, 1, 1.2222);
@@ -105,9 +105,27 @@ public class TestMatrixSeries {
 	}
 	
 	@Test(expected = ArrayIndexOutOfBoundsException.class)
-	public void TestgetInvalidParams() {			//checks for negative params
+	public void TestgetInvalidNegativeRowParams() {			//checks for negative params
 		MatrixSeries testMat = new MatrixSeries("testMat", 3, 3);
-		assertEquals(1.1111, testMat.get(-1, -1), 0.0001);
+		assertEquals(1.1111, testMat.get(-1, 2), 0.0001);
+	}
+	
+	@Test(expected = ArrayIndexOutOfBoundsException.class)
+	public void TestgetInvalidNegativeColParams() {			//checks for negative params
+		MatrixSeries testMat = new MatrixSeries("testMat", 3, 3);
+		assertEquals(1.1111, testMat.get(2, -1), 0.0001);
+	}
+	
+	@Test(expected = ArrayIndexOutOfBoundsException.class)
+	public void TestgetInvalidOutofBoundRowParams() {			//high positive params
+		MatrixSeries testMat = new MatrixSeries("testMat", 3, 3);
+		assertEquals(1.1111, testMat.get(5, 2), 0.0001);
+	}
+	
+	@Test(expected = ArrayIndexOutOfBoundsException.class)
+	public void TestgetInvalidOutofBoundColParams() {			//high positive params
+		MatrixSeries testMat = new MatrixSeries("testMat", 3, 3);
+		assertEquals(1.1111, testMat.get(2, 5), 0.0001);
 	}
 	
 	//getColumnsCount function test
@@ -119,7 +137,7 @@ public class TestMatrixSeries {
 	}
 	
 	
-	//getitem equals function test
+	//getitem function test
 	
 	@Test
 	public void TestgetItemValid() {
@@ -243,7 +261,7 @@ public class TestMatrixSeries {
 	
 	
 	//zeroAll function test
-	public void TestzeroAllValidBoundry00() { 
+	public void TestzeroAllValidBoundaryCornerCase00() { 
 		MatrixSeries testMat = new MatrixSeries("testMat", 3, 3);
 		testMat.update(0, 0,99.9);
 		testMat.zeroAll();
@@ -251,28 +269,28 @@ public class TestMatrixSeries {
 	}
 	
 	
-	public void TestzeroAllValidBoundry02() {
+	public void TestzeroAllValidBoundaryCornerCase02() {
 		MatrixSeries testMat = new MatrixSeries("testMat", 3, 3);
 		testMat.update(0, 2,99.9);
 		testMat.zeroAll();
 		assertTrue(testMat.get(0, 2) == 0.0);
 	}
 	
-	public void TestzeroAllValidBoundry20() { 
+	public void TestzeroAllValidBoundaryCornerCase20() { 
 		MatrixSeries testMat = new MatrixSeries("testMat", 3, 3);
 		testMat.update(2, 0,99.9);
 		testMat.zeroAll();
 		assertTrue(testMat.get(2, 0) == 0.0);
 	}
 	
-	public void TestzeroAllValidBoundry22() {
+	public void TestzeroAllValidBoundaryCornerCase22() {
 		MatrixSeries testMat = new MatrixSeries("testMat", 3, 3);
 		testMat.update(2, 2,99.9);
 		testMat.zeroAll();
 		assertTrue(testMat.get(2, 2) == 0.0);
 	}
 	
-	public void TestzeroAllValidBoundryij() { // non boundry value
+	public void TestzeroAllValidBoundaryij() { // non Boundary value
 		MatrixSeries testMat = new MatrixSeries("testMat", 3, 3);
 		testMat.update(2, 2,99.9);
 		testMat.zeroAll();

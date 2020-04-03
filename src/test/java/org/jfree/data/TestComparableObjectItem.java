@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import org.jfree.data.ComparableObjectItem;
 
 
+
 import org.junit.Test;
 
 public class TestComparableObjectItem {
@@ -99,6 +100,5 @@ public class TestComparableObjectItem {
 		ComparableObjectItem comparableObjectItem2 = new ComparableObjectItem(2, 3);
 		assertNotEquals(comparableObjectItem.hashCode(), comparableObjectItem2.hashCode());
 	}
-	
 	
 }

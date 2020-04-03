@@ -2,6 +2,7 @@ package org.jfree.data;
 
 import static org.junit.Assert.*;
 
+
 import org.jfree.data.xy.MatrixSeries;
 import org.junit.Test;
 import org.objenesis.instantiator.basic.NewInstanceInstantiator;

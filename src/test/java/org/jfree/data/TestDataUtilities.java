@@ -12,6 +12,7 @@ import org.jfree.data.Values2D;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+
 public class TestDataUtilities {
 
 	@Test
